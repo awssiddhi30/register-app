@@ -48,7 +48,7 @@ pipeline{
         }
         stage('run docker image'){
             steps{
-                sh "docker run -d --name Loginapp -p 9090:9090 siri30/registerapp:v10"
+                sh "docker run -d --name LOGINAPPP -p 9090:9090 siri30/registerapp:v10"
             }
 
         }
