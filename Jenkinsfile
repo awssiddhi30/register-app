@@ -30,5 +30,19 @@ pipeline{
                 sh "mvn test"
             }
         }
+        stage('build image and push  to dockerhub'){
+            steps {
+               withCredentials([usernamePassword(credentialsId: 'dockerhub-access', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                 sh """
+                    docker build -t siri30/registerapp:${IMAGE_TAG} .
+                    echo "\$DOCKER_PASS" | docker login -u "\$DOCKER_USER" --password-stdin
+                    docker push siri30/registerapp:${IMAGE_TAG}
+                    docker rmi siri30/registerapp:${IMAGE_TAG}
+                  """
+                }
+            }
+ 
+           
+        }
     }
 }
