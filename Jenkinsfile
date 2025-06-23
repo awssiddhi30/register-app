@@ -46,7 +46,7 @@ pipeline{
         }
         stage('run docker image'){
             steps{
-                sh "docker run -d --name register-app -p 80:80 siri30/registerapp:${IMAGE_TAG}"
+                sh "docker run -d --name Register-app -p 8080:8080 siri30/registerapp:${IMAGE_TAG}"
             }
 
         }
