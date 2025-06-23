@@ -6,6 +6,8 @@ pipeline{
     }
      parameters{
         string(name: 'IMAGE_TAG', description: 'Who should I say hello to?')
+        string(name: 'CONTAINER_NAME', description: 'Who should I say hello to?')
+
     }
     stages{
         stage('clean workspace'){
@@ -46,7 +48,7 @@ pipeline{
         }
         stage('run docker image'){
             steps{
-                sh "docker run -d --name Register-app -p 8080:8080 siri30/registerapp:${IMAGE_TAG}"
+                sh "docker run -d --name ${CONTAINER_NAME} -p 8080:8080 siri30/registerapp:${IMAGE_TAG}"
             }
 
         }
