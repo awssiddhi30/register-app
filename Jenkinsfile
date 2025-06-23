@@ -36,10 +36,10 @@ pipeline{
             steps {
                withCredentials([usernamePassword(credentialsId: 'dockerhub-access', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                  sh """
-                    docker build -t siri30/registerapp:v10 .
+                    docker build -t siri30/registerapp:v11 .
                     echo "\$DOCKER_PASS" | docker login -u "\$DOCKER_USER" --password-stdin
-                    docker push siri30/registerapp:v10
-                    docker rmi siri30/registerapp:v10
+                    docker push siri30/registerapp:v11
+                    docker rmi siri30/registerapp:v11
                   """
                 }
             }
@@ -48,7 +48,7 @@ pipeline{
         }
         stage('run docker image'){
             steps{
-                sh "docker run -d --name LOGINAPPP -p 9090:9090 siri30/registerapp:v10"
+                sh "docker run -d --name LOGINAPPP -p 9090:9090 siri30/registerapp:v11"
             }
 
         }
